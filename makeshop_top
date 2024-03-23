@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title><{$page.title}></title>
+<meta name="description" content="<{$page.description}>">
+<link rel="canonical" href="<{$page.canonical_url}>">
+<link rel="shortcut icon" type="image/ico" href="<{$shop.favicon_url}>">
+<meta property="og:type" content="website">
+<meta property="og:title" content="<{$page.title}>">
+<meta property="og:description" content="<{$page.description}>">
+<meta property="og:site_name" content="<{$shop.name}>">
+<meta name="twitter:card" content="Summary with Large Image">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<{$makeshop.head}>
+<link rel="stylesheet" href="<{$page.css}>">
+</head>
+
+<body>
+
+<{$makeshop.body_top}>
+<{$module.header}>
+<section class="wrapper">
+    <section class="main">
+<div style="text-align: right">
+    <SPAN><a href="https://www.hiromienterprise.com">公式HPへ</a>
+    </SPAN>
+	</div>
+    <{if $shop.mainvisual}>
+        <div class="main-visual"><{$shop.mainvisual}></div>
+    <{/if}>
+        <div class="main-contents main-contents-pickup">
+            <h2 class="section-title section-title-pickup">NEWS</h2>
+            <ul class="news-list index-news-list">
+                        <{section name=i loop=$latest_news.list max=3}>
+                        <li>
+                            <div class="news-wrap">
+                                <p class="news-date"><{$latest_news.list[i].date.year}>/<{$latest_news.list[i].date.month}>/<{$latest_news.list[i].date.day}> </p>
+                                <dl>
+                                    <dt class="news-title"><a href="<{$latest_news.list[i].url}>"><{$latest_news.list[i].title}></a></dt>
+                                    <dd class="news-content"><{$latest_news.list[i].content|cut_html:100}><a href="<{$latest_news.list[i].url}>">...read more</dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <{/section}>
+                    </ul>
+                    <p class="news-more"><a href="<{$url.news}>">お知らせ一覧へ</a></p>
+                </section>
+        <div class="main-contents main-contents-pickup">
+            <h2 class="section-title section-title-pickup">PICK UP</h2>
+            <ul class="item-list pickup-list">
+                <{section name=i loop=$recommend_item.list max=6}>
+                <li>
+                    <div class="item-list-img pickup-list-img">
+                        <a href="<{$recommend_item.list[i].url}>"><img src="<{$recommend_item.list[i].image_L}>" alt="<{$recommend_item.list[i].name}>"></a>
+                    </div>
+                    <dl class="item-info">
+                        <dt class="item-info-name"><a href="<{$recommend_item.list[i].url}>"><{$recommend_item.list[i].name}></a></dt>
+                        <dd class="item-info-price">￥<{$recommend_item.list[i].price|number_format}></dd>
+                    </dl>
+                </li>
+                <{/section}>
+            </ul>
+        </div>
+
+        <div class="main-contents main-contents-newitems">
+            <h2 class="section-title section-title-newitems">NEW ITEMS</h2>
+            <ul class="item-list newitems-list">
+                <{section name=i loop=$new_item.list max=12}>
+                <li>
+                    <div class="item-list-img newitems-list-img">
+                        <a href="<{$new_item.list[i].url}>"><img src="<{$new_item.list[i].image_L}>" alt="<{$new_item.list[i].name}>"></a>
+                        <{if $new_item.list[i].is_soldout}>
+                        <p class="item-soldout">SOLD OUT</p>
+                        <{/if}>
+                    </div>
+                    <dl class="item-info">
+                        <dt class="item-info-name"><a href="<{$new_item.list[i].url}>"><{$new_item.list[i].name}></a></dt>
+                        <{if $new_item.list[i].is_sale}>
+                        <dd class="item-info-price item-info-sale">￥<{$new_item.list[i].price|number_format}><span class="item-price-down"><{$new_item.list[i].sale_rate}>%OFF</span></dd>
+                        <{else}>
+                        <dd class="item-info-price">￥<{$new_item.list[i].price|number_format}></dd>
+                        <{/if}>
+                    </dl>
+                </li>
+                <{/section}>
+            </ul>
+            <div class="item-view-btn"><a href="/view/category/all_items">すべての商品を見る</a></div>
+        </div>
+
+        <div class="main-contents main-contents-ranking">
+            <h2 class="section-title section-title-ranking">RANKING</h2>
+            <ul class="item-list ranking-list">
+                <{section name=i loop=$ranking_item.list max=8}>
+                <li>
+                    <div class="item-list-img ranking-list-img">
+                        <div class="item-ranking-num"><{$ranking_item.list[i].num}></div>
+                        <a href="<{$ranking_item.list[i].url}>"><img src="<{$ranking_item.list[i].image_L}>" alt="<{$ranking_item.list[i].name}>"></a>
+                        <{if $ranking_item.list[i].is_soldout}>
+                        <p class="item-soldout">SOLD OUT</p>
+                        <{/if}>
+                    </div>
+                    <dl class="item-info">
+                        <dt class="item-info-name"><a href="<{$ranking_item.list[i].url}>"><{$ranking_item.list[i].name}></a></dt>
+                        <{if $ranking_item.list[i].is_sale}>
+                        <dd class="item-info-price item-info-sale">￥<{$ranking_item.list[i].price|number_format}><span class="item-price-down"><{$ranking_item.list[i].sale_rate}>%OFF</span></dd>
+                        <{else}>
+                        <dd class="item-info-price">￥<{$ranking_item.list[i].price|number_format}></dd>
+                        <{/if}>
+                    </dl>
+                </li>
+                <{/section}>
+            </ul>
+        </div>
+                            
+        <{$module.checked}>
+        
+    </section>
+</section>
+<{$module.footer}>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+<script src="<{$page.javascript}>"></script>
+<{$makeshop.body_bottom}>
+
+</body>
+</html>
