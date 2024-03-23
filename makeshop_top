@@ -40,7 +40,7 @@
                                 <p class="news-date"><{$latest_news.list[i].date.year}>/<{$latest_news.list[i].date.month}>/<{$latest_news.list[i].date.day}> </p>
                                 <dl>
                                     <dt class="news-title"><a href="<{$latest_news.list[i].url}>"><{$latest_news.list[i].title}></a></dt>
-                                    <dd class="news-content"><{$latest_news.list[i].content|cut_html:100}><a href="<{$latest_news.list[i].url}>">...read more</dd>
+                                    <dd class="news-content"><{$latest_news.list[i].content|cut_html:40}><a href="<{$latest_news.list[i].url}>">...read more</dd>
                                 </dl>
                             </div>
                         </li>
